@@ -1,11 +1,6 @@
 Rails.application.configure do
   # Webpack
-  config.webpack.config_file = if Rails.env.development? || Rails.env.test?
-    'config/webpack.dev.config.js'
-  else
-    'config/webpack.prod.config.js'
-  end
-
+  config.webpack.config_file = 'config/webpack.config.js'
   config.webpack.binary = 'node_modules/.bin/webpack'
 
   # Host & port to use when generating asset URLS in the manifest helpers in dev

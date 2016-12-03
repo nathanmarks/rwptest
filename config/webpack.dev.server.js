@@ -9,7 +9,6 @@ const serverOptions = {
   publicPath: webpackConfig.output.publicPath,
   headers: {'Access-Control-Allow-Origin': '*'},
   hot: false,
-  inline: true,
   historyApiFallback: true,
   stats: {
     modules: false,
