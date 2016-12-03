@@ -1,0 +1,41 @@
+Arguments: 
+  /usr/local/Cellar/node/7.1.0/bin/node /usr/local/bin/yarn init
+
+PATH: 
+  /Users/nathan/.gem/ruby/2.3.1/bin:/opt/rubies/2.3.1/lib/ruby/gems/2.3.0/bin:/opt/rubies/2.3.1/bin:/Users/nathan/.yarn/bin:/usr/local/bin:/usr/local/sbin:/Users/nathan/.dotfiles/bin:/Users/nathan/Code/go/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:./bin:/usr/local/sbin:/Users/nathan/.dotfiles/bin:/Users/nathan/Code/go/bin
+
+Yarn version: 
+  0.16.1
+
+Node version: 
+  7.1.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "scwptest",
+    "version": "0.0.1",
+    "license": "MIT",
+    "devDependencies": {
+      "stats-webpack-plugin": "^0.2.1",
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+bower manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  SyntaxError: /Users/nathan/Code/repos/nathanmarks/scwptest/package.json: Unexpected token } in JSON at position 129
+      at JSON.parse (<anonymous>)
+      at Object.<anonymous> (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/lib/util/fs.js:271:57)
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+      at /usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13

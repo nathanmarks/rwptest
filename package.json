@@ -1,0 +1,10 @@
+{
+  "name": "scwptest",
+  "version": "0.0.1",
+  "license": "MIT",
+  "devDependencies": {
+    "stats-webpack-plugin": "^0.2.1",
+    "webpack": "v2.1.0-beta.27",
+    "webpack-dev-server": "v2.1.0-beta.12"
+  }
+}

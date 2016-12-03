@@ -1,0 +1,9 @@
+up:
+  - homebrew:
+    - openssl
+    - phantomjs
+  - ruby:
+      version: 2.3.1
+  - bundler
+  - node:
+      version: v6.9.1
