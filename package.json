@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "license": "MIT",
   "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-preset-shopify": "^15.0.1",
     "stats-webpack-plugin": "^0.2.1",
     "webpack": "v2.1.0-beta.27",
     "webpack-dev-server": "v2.1.0-beta.12"
