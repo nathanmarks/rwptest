@@ -16,6 +16,6 @@ window.addEventListener('load', function () {
   render();
 });
 
-if (module.hot) {
-  module.hot.accept('./modules/foo', render);
-}
+// if (module.hot) {
+//   module.hot.accept('./modules/foo', render);
+// }

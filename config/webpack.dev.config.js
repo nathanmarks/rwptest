@@ -2,7 +2,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const StatsPlugin = require('stats-webpack-plugin');
 
 // must match config.webpack.dev_server.port
 const DEV_SERVER_PORT = 3808;
@@ -15,7 +14,7 @@ module.exports = {
   entry: {
     application: [
       `webpack-dev-server/client?http://0.0.0.0:${DEV_SERVER_PORT}`,
-      'webpack/hot/only-dev-server',
+      // 'webpack/hot/only-dev-server',
       `${ASSETS_JS_PATH}/application.js`,
     ],
   },
@@ -43,8 +42,47 @@ module.exports = {
         NODE_ENV: "'development'",
       },
     }),
-    new StatsPlugin('manifest.json'),
+    {
+      apply(compiler) {
+        compiler.plugin('emit', (compilation, done) => {
+          let result;
+
+          const stats = compilation.getStats().toJson({
+            // node_modules/webpack/lib/Stats.js
+            hash: true,
+            version: true,
+            timings: false,
+            assets: true,
+            chunks: false,
+            chunkModules: false,
+            chunkOrigins: false,
+            modules: false,
+            cached: false,
+            reasons: false,
+            children: false,
+            source: false,
+            errors: false,
+            errorDetails: false,
+            warnings: false,
+            publicPath: true,
+          });
+          delete stats.assets;
+
+          compilation.assets['manifest.json'] = {
+            size: function getSize() {
+              return result ? result.length : 0;
+            },
+            source: function getSource() {
+              result = JSON.stringify(stats);
+              return result;
+            },
+          };
+
+          done();
+        });
+      },
+    },
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
   ],
 };

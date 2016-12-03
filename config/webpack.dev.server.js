@@ -8,7 +8,8 @@ const PORT = 3808;
 const serverOptions = {
   publicPath: webpackConfig.output.publicPath,
   headers: {'Access-Control-Allow-Origin': '*'},
-  hot: true,
+  hot: false,
+  inline: true,
   historyApiFallback: true,
   stats: {
     modules: false,
