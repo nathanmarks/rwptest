@@ -36,48 +36,52 @@ function create(config) {
       ],
     },
     plugins: [
-      {
-        apply(compiler) {
-          compiler.plugin('emit', (compilation, done) => {
-            let result;
-
-            const stats = compilation.getStats().toJson({
-              // node_modules/webpack/lib/Stats.js
-              hash: true,
-              version: true,
-              timings: false,
-              assets: true,
-              chunks: false,
-              chunkModules: false,
-              chunkOrigins: false,
-              modules: false,
-              cached: false,
-              reasons: false,
-              children: false,
-              source: false,
-              errors: false,
-              errorDetails: false,
-              warnings: false,
-              publicPath: true,
-            });
-
-            delete stats.assets;
-
-            compilation.assets['manifest.json'] = {
-              size: function getSize() {
-                return result ? result.length : 0;
-              },
-              source: function getSource() {
-                result = JSON.stringify(stats);
-                return result;
-              },
-            };
-
-            done();
-          });
-        },
-      },
-      new webpack.NamedModulesPlugin(),
+      // new webpack.optimize.CommonsChunkPlugin({
+      //     name: 'vendor',
+      // }),
+      webpackRailsManifestPlugin,
     ],
   }, config);
 }
+
+const webpackRailsManifestPlugin = {
+  apply(compiler) {
+    compiler.plugin('emit', (compilation, done) => {
+      let result;
+
+      const stats = compilation.getStats().toJson({
+        // node_modules/webpack/lib/Stats.js
+        hash: true,
+        version: true,
+        timings: false,
+        assets: true,
+        chunks: false,
+        chunkModules: false,
+        chunkOrigins: false,
+        modules: false,
+        cached: false,
+        reasons: false,
+        children: false,
+        source: false,
+        errors: false,
+        errorDetails: false,
+        warnings: false,
+        publicPath: true,
+      });
+
+      delete stats.assets;
+
+      compilation.assets['manifest.json'] = {
+        size: function getSize() {
+          return result ? result.length : 0;
+        },
+        source: function getSource() {
+          result = JSON.stringify(stats);
+          return result;
+        },
+      };
+
+      done();
+    });
+  },
+};

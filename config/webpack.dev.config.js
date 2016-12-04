@@ -11,13 +11,14 @@ function createConfig() {
     devtool: 'inline-source-map',
   });
 
-  config.plugins.concat([
+  config.plugins = config.plugins.concat([
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
       },
     }),
     // new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
   ]);
 
   Object.keys(config.entry).forEach((n) => {
