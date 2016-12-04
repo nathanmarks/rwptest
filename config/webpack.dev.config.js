@@ -28,10 +28,10 @@ function createConfig() {
       entry = [entry];
     }
 
-    config.entry[n] = [
-      `webpack-dev-server/client?http://0.0.0.0:${webpackBaseConfig.DEV_SERVER_PORT}`,
-      // 'webpack/hot/only-dev-server',
-    ].concat(entry);
+    // config.entry[n] = [
+    //   `webpack-dev-server/client?http://0.0.0.0:${webpackBaseConfig.DEV_SERVER_PORT}`,
+    //   // 'webpack/hot/only-dev-server',
+    // ].concat(entry);
   });
 
   return config;
