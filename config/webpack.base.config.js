@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const merge = require('lodash/merge');
 
@@ -15,15 +16,25 @@ module.exports = {
   create,
 };
 
+function assetManifests() {
+  const manifestsPath = path.resolve(ASSETS_JS_PATH, 'manifests');
+  const manifests = fs.readdirSync(manifestsPath);
+
+  return manifests.reduce((result, filename) => {
+    result[filename.replace('.js', '')] = `${manifestsPath}/${filename}`;
+    return result;
+  }, {});
+}
+
 function create(config) {
   return merge({
-    entry: {
+    entry: merge({
       application: `${ASSETS_JS_PATH}/application.js`,
-    },
+    }, assetManifests()),
     output: {
       // must match config.webpack.output_dir
       path: path.resolve(ROOT_PATH, 'public/assets'),
-      publicPath: `http://0.0.0.0:${DEV_SERVER_PORT}/assets/`,
+      publicPath: `/assets/`,
       filename: '[name].js',
     },
     module: {
