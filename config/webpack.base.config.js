@@ -46,9 +46,15 @@ function create(config) {
         },
       ],
     },
+    resolve: {
+      alias: {
+        modules: path.resolve(ASSETS_JS_PATH, 'modules'),
+      },
+    },
     plugins: [
       // new webpack.optimize.CommonsChunkPlugin({
-      //     name: 'vendor',
+      //   name: 'application',
+      //   minChunks: 2,
       // }),
       webpackRailsManifestPlugin,
     ],

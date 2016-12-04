@@ -4,12 +4,24 @@
     <title>Scwptest</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag *webpack_asset_paths('application') %>
+    <% content_for :application_script_tags do %>
+      <%= javascript_include_tag *webpack_asset_paths('application') %>
+    <% end %>
   </head>
 
   <body>
+    <ul class="nav">
+      <li>
+        <%= link_to 'Home', controller: 'home' %>
+      </li>
+      <li>
+        <%= link_to 'Reports', controller: 'reports' %>
+      </li>
+    </ul>
+
     <%= yield %>
-    <div class="app"></div>
+
+    <%= yield :application_script_tags %>
+    <%= yield :page_script_tags %>
   </body>
 </html>
