@@ -34,7 +34,7 @@ function create(config) {
     output: {
       // must match config.webpack.output_dir
       path: path.resolve(ROOT_PATH, 'public/assets'),
-      publicPath: `/assets/`,
+      publicPath: '/assets/',
       filename: '[name].js',
     },
     module: {
@@ -52,10 +52,10 @@ function create(config) {
       },
     },
     plugins: [
-      // new webpack.optimize.CommonsChunkPlugin({
-      //   name: 'application',
-      //   minChunks: 2,
-      // }),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'application',
+        minChunks: 2,
+      }),
       webpackRailsManifestPlugin,
     ],
   }, config);
